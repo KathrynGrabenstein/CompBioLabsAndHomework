@@ -1,4 +1,4 @@
-#Computational Biology
+ #Computational Biology
 #Kathryn Grabenstein
 #Lab 03 
 
@@ -10,6 +10,7 @@ getwd()
 
 #clear variable list from previous analyses 
 rm(list=ls()) 
+# SMF: Good idea for sure!
 
 #lab step #3
 #Set variables
@@ -79,6 +80,12 @@ str(PennyIV)
 
 #check structure of penny.rankings
 str(penny.ranking)
+# SMF: what do you notice about the differences between the objects?
+
+#PennyIV is a single numerical element with the value 3, 
+#penny ranking is a vector with 1 row and 7 rows,
+#StarWardsRankings is a matrix with 7 rows and 5 columns
+
 
 #lab step #12
 #make data frame with star wars rankings with data.frame
@@ -102,6 +109,14 @@ str(StarWars.df)
 typeof(StarWars.df)
 typeof(StarWarsRankings)
 StarWarsRankings == StarWars.df
+
+# SMF: what do you notice about the differences and similarities between the matrix and the 
+# SMF: data frame?  E.g., double vs. list
+
+#the dataframe is a list whereas the original matrix is a double. 
+#the values and the structure of the two arrays are equivilent, which is a similarity.
+#One difference is the way the data is encoded within the arrays. In the dataframe, values
+#are categorized as floats, whereas in the matrix they are only lists, an ordered collection of components.
 
 #lab step #14
 # I already did this to make my data frame.... but here it is again
@@ -131,7 +146,8 @@ StarWars.df[2,2]
 
 #lab step #20
 #access everyones rankings for IV-VI
-StarWars.df[ c(4:6), ]
+StarWars.df[ (4:6), ]
+# SMF: you don't need the "c" when using the colon operator
 
 #lab step #21
 #access everyones rankings for II, V, and VII
@@ -143,12 +159,15 @@ StarWars.df [ c(4,6), c(2:3,5) ]
 
 #lab step #23
 #switch lenny's ranks for episodes II and V
-lenny.original.ranking.II <- 7
+#store original ranking for episode II
+tempLennyII <- StarWars.df[2,4] 
+tempLennyII
 
-#what current rankings 
-StarWars.df[,4]
-#change rankings 
-StarWars.df[,4] <- c(1,6,3,4,7,5,2)
+#move ranking for episode V to episode II
+StarWars.df[2,4]  <- StarWars.df[5,4]
+
+#replace episode V slot with stored variable for episode II
+StarWars.df[5,4] <- tempLennyII
 
 #check switch
 StarWars.df[,4]
@@ -166,10 +185,32 @@ StarWars.df["III", "penny.ranking"] == StarWarsRankings[3, "penny.ranking"]
 
 #step #25
 #undo the switch
-StarWars.df[ c("II","V"), "lenny.ranking"] <- c(7,6)
-StarWars.df
+#switch lenny's ranks for episodes II and V
+#store original ranking for episode II
+tempLennyII.variable <- StarWars.df["II", "lenny.ranking"] 
+tempLennyII.variable
+
+#move ranking for episode V to episode II
+StarWars.df["II", "lenny.ranking"] <- StarWars.df["V", "lenny.ranking"]
+
+#replace episode V slot with stored variable for episode II
+StarWars.df["V", "lenny.ranking"] <- tempLennyII.variable
+
+#check switch
+StarWars.df["lenny.ranking"]
+
 
 #lab step #26
 #re-do switch from step #23 with $ operator 
-StarWars.df$lenny.ranking[c(2,5)] <- c(6,7)
-StarWars.df
+#store original ranking for episode II
+templenny.dollar <- StarWars.df$lenny.ranking[2] 
+templenny.dollar
+
+#move ranking for episode V to episode II
+StarWars.df$lenny.ranking[2] <- StarWars.df$lenny.ranking[5]
+
+#replace episode V slot with stored variable for episode II
+StarWars.df$lenny.ranking[5] <- templenny.dollar
+
+#check switch
+StarWars.df["lenny.ranking"]

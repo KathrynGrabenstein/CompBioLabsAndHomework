@@ -52,7 +52,7 @@ pch = 19, col = "dodgerblue")
 
 
 ### An example plot from the model output
-[Sample output plot](LogisticGrowthPlot.png)
+![Sample output plot](LogisticGrowthPlot.png)
 
 ## Testing the function
 After constructing the function, line 91 calls the function on sample data and stores the output

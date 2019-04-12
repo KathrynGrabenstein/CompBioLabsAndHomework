@@ -64,7 +64,7 @@ head(Species)
 # Density = mean
 #dplyr calculate mean for unique family names
 subsetWood <- filteredWood %>%
-  group_by(Binomial)  %>%
+  group_by(Binomial, Family)  %>%
   summarise(meanDensity = mean(Density), n = n()) %>%
   ungroup %>%
   as.data.frame()
@@ -73,24 +73,10 @@ subsetWood <- filteredWood %>%
 nrow(subsetWood)
 dim(subsetWood)
 as.data.frame(subsetWood)
-typeof(subsetWood)
 
-#sort by unique values in binomial but keep rows intact
-intactRow <- distinct(filteredWood, Binomial, .keep_all = TRUE)
-head(intactRow)
-
-#create new column in subset dataset and add Family from intact row 
-subsetWood$Family <- intactRow[2]
-subsetWood
-
-#rearrange columns 
-#get existing order
-colnames(subsetWood)
-
-#reorder
-subsetWood <- subsetWood[ ,c(1,4,2,3)]
 head(subsetWood)
 typeof(subsetWood)
+class(subsetWood)
 
 #6
 #contrasting most and least dense families 
@@ -106,23 +92,56 @@ nrow(familyMean)
 
 #6b sort family mean dataframe by mean values 
 sortedFamilyMean <- arrange(familyMean, meanDensity)
+head(sortedFamilyMean)
 
 #6c
 #densest families
 densestFamilies <- tail(sortedFamilyMean, 8)
 densestFamilies
 
+str(densestFamilies)
+
 #least dense families
 leastDenseFamilies <- head(sortedFamilyMean, 8)
+leastDenseFamilies
+
 
 #Part III: Plotting
 #make facet plot with families with most and least dense wood
+#make new dataframe to plot that has only 16 families but all species
 
-plot <- ggplot(subsetWood, aes(x = Binomial, y = meanDensity, group = Family)) +
-      geom_boxplot()
-plot
+#DENSE 
 
-facet_wrap(~Family, nrow = 2)
+#subset of all species from densest families
+DensestWood.plot <- subsetWood %>%
+  filter(Family %in% densestFamilies$Family)
 
+#plot all species from densest families grouped by family
+{Densest.plot <- ggplot(DensestWood.plot, aes(x = Binomial, y = meanDensity, group = Family)) +
+      geom_boxplot() + facet_wrap(~Family, nrow = 2) +
+  theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank(), axis.title.x=element_blank(),
+        axis.text.x=element_blank(),
+        axis.ticks.x=element_blank())
+  Densest.plot 
+}
+
+#LEAST DENSE
+#subset of all species from densest families
+notDenseWood.toplot <- subsetWood %>%
+  filter(Family %in% leastDenseFamilies$Family)
+
+#plot all species from densest families grouped by family
+{NoDensestWood.plot <- ggplot(notDenseWood.toplot, aes(x = Binomial, y = meanDensity, group = Family)) +
+    geom_boxplot() + facet_wrap(~Family, nrow = 2) +
+    theme(panel.border = element_blank(), panel.grid.major = element_blank(),
+          panel.grid.minor = element_blank(), axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          axis.ticks.x=element_blank())
+  NoDensestWood.plot
+  }
+
+# I can't get the boxplots to center in their facets
+#nor can I get single points to be 
 
 

@@ -61,7 +61,7 @@ Both data files are in .RData format and are directly downloaded from data dryad
 ## Detailed Description of Analysis to be Done and Challenges Involved
 
 ### Visiting frequencies 
-*How many unique nest boxes do individuals vist? How does this vary with age, sex & breeding status?*
+*How many unique nest boxes do individuals visit? How does this vary with age, sex & breeding status?*
 1. Using the *obs.dryad* file, I will first tally the number of visits to unique boxes for each individual 
 2. I will then assess the relationship between unique nest boxes visited by an individual and its age, sex, and breeding status.
 3. I will graph visits to unique nest boxes by age, sex, & breeding status

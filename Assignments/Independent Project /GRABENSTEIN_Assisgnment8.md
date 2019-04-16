@@ -1,4 +1,4 @@
-# Mechanistic underpinnings of nest site visitations in great tits and subsequent reproductive success
+# Nest box visitation variation in wild great tits 
 
 ## Introduction
 The behaviors of individual birds prior to the breeding season influences their overall reproductive success. 

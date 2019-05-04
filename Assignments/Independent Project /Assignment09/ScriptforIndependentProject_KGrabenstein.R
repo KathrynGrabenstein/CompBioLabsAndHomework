@@ -74,39 +74,69 @@ mean.visits <- mean(all.info.visit.count.no.dup$n)
 mean.visits
 
 #subset juvenile male breeders
-juv.m.breed <- subset(all.info.visit.count.no.dup, Age == "5" | Sex == "M" |  Breeding == "B")
+juv.m.breed <- subset(all.info.visit.count.no.dup, Age == "Juvenile" | Sex == "M" |  Breeding == "B")
   
 #calc mean  
 mean(juv.m.breed$n)
 
+###########################
+
 #subset adult male breeders
-adult.m.breed <- subset(all.info.visit.count.no.dup, Age == "6" | Sex == "M" |  Breeding == "B")
+adult.m.breed <- subset(all.info.visit.count.no.dup, Age == "Adult" | Sex == "M" |  Breeding == "B")
 
 #calc mean  
 mean(adult.m.breed$n)
 
+###########################
 
 #subset juvenile male non-breeders
-juv.m.non.breed <- subset(all.info.visit.count.no.dup, Age == "5" | Sex == "M" |  Breeding == "NB")
+juv.m.non.breed <- subset(all.info.visit.count.no.dup, Age == "Juvenile" | Sex == "M" |  Breeding == "NB")
 
 #calc mean  
 mean(juv.m.non.breed$n)
 
+###########################
+
 #subset adult male non-breeders 
-adult.m.non.breed <- subset(all.info.visit.count.no.dup, Age == "6" | Sex == "M" |  Breeding == "NB")
+adult.m.non.breed <- subset(all.info.visit.count.no.dup, Age == "Adult" | Sex == "M" |  Breeding == "NB")
   
 #calc mean  
 mean(adult.m.non.breed$n)
 
+###########################
 
 #subset juvenile female breeders
-juv.f.breed <- 
+juv.f.breed <- subset(all.info.visit.count.no.dup, Age == "Juvenile" | Sex == "F" |  Breeding == "B")
+
+#calc mean
+mean(juv.f.breed$n)
+
+###########################
+
 #subset adult female breeders
-adult.f.breed <- 
+adult.f.breed <- subset(all.info.visit.count.no.dup, Age == "Adult" | Sex == "F" |  Breeding == "B")
+
+#calc mean
+mean(adult.f.breed$n)
+
+###########################
+
 #subset juvenile female non-breeders
-juv.f.non.breed <-
+juv.f.non.breed <- subset(all.info.visit.count.no.dup, Age == "Juvenile" | Sex == "F" |  Breeding == "NB")
+  
+#calc mean
+mean(juv.f.non.breed$n)
+
+###########################  
+  
 #subset adult female non-breeders 
-adult.f.non.breed <-
+adult.f.non.breed <-  subset(all.info.visit.count.no.dup, Age == "Adult" | Sex == "F" |  Breeding == "NB")
+
+#calc mean
+mean(adult.f.non.breed$n)
+  
+###########################
+
 
 #replace 5 with juvenile & 6 with adult in age column
 #replace 5 with juvenile
